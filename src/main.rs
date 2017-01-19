@@ -43,7 +43,13 @@ struct Table {
             for i2 in 1..lines.len() {
                 let current_line_vec: Vec<&str> = lines[i2].split(",").collect();
                 words_vec.push(Word::new(
-                    current_line_vec.first().unwrap().trim().parse().unwrap(), current_line_vec[i].to_string()))
+                    current_line_vec.first()
+                        .unwrap()
+                        .trim()
+                        .parse()
+                        .unwrap()
+                    , current_line_vec[i].to_string())
+                )
             }
             langs.push(Language::new((i as i32) - 1, first_row[i].to_string(), words_vec))
         }
@@ -60,24 +66,6 @@ fn main() {
             println!("{} with {}", word.item_id, word.value);
         }
     }
-}
-
-fn parse_lang(content: String) -> Vec<Language> {
-    let lines: Vec<&str> = content.split("\n").collect();
-
-    let first_row: Vec<&str> = lines[0].split(",").collect();
-    let mut langs = Vec::new();
-
-    for i in 1..first_row.len() {
-        let mut words_vec: Vec<Word> = Vec::new();
-        for i2 in 1..lines.len() {
-            let current_line_vec: Vec<&str> = lines[i2].split(",").collect();
-            words_vec.push(Word::new(
-                current_line_vec.first().unwrap().trim().parse().unwrap(), current_line_vec[i].to_string()))
-        }
-        langs.push(Language::new((i as i32) - 1, first_row[i].to_string(), words_vec))
-    }
-    langs
 }
 
 // =============================================================================
