@@ -23,9 +23,38 @@ struct Language {
     }
 }
 
+struct Table {
+    file: File,
+    languages: Vec<Language>
+} impl Table {
+    fn new(direc: String, name: String, extension: String) -> Table {
+        Table { file: open_file(direc, name, extension), languages: Vec::new() }
+    }
+
+    fn parse_langs(&mut self) {
+        let mut content = read_file(&mut self.file);
+        let lines: Vec<&str> = content.split("\n").collect();
+
+        let first_row: Vec<&str> = lines[0].split(",").collect();
+        let mut langs = Vec::new();
+
+        for i in 1..first_row.len() {
+            let mut words_vec: Vec<Word> = Vec::new();
+            for i2 in 1..lines.len() {
+                let current_line_vec: Vec<&str> = lines[i2].split(",").collect();
+                words_vec.push(Word::new(
+                    current_line_vec.first().unwrap().trim().parse().unwrap(), current_line_vec[i].to_string()))
+            }
+            langs.push(Language::new((i as i32) - 1, first_row[i].to_string(), words_vec))
+        }
+        self.languages = langs;
+    }
+}
+
 fn main() {
-    let lang_vec = parse_info(read_file(&mut open_file("..".to_string(), "new".to_string(), "csv".to_string())));
-    for lang in lang_vec {
+    let mut t = Table::new("..".to_string(), "new".to_string(), "csv".to_string());
+    t.parse_langs();
+    for lang in t.languages {
         println!("Id: {}\nName:{}\nWords:\n", lang.id, lang.name);
         for word in lang.words {
             println!("{} with {}", word.item_id, word.value);
@@ -33,7 +62,7 @@ fn main() {
     }
 }
 
-fn parse_info(content: String) -> Vec<Language> {
+fn parse_lang(content: String) -> Vec<Language> {
     let lines: Vec<&str> = content.split("\n").collect();
 
     let first_row: Vec<&str> = lines[0].split(",").collect();
