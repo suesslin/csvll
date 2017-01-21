@@ -52,21 +52,23 @@ struct Table {
         // New method:
         // Going through the rows, then languages
 
+        // Word parsing
+        // NOTE: IDs must go -1, because starts counting at 1 (1 should be 0)
         for word_i in 1..lines.len() {
             let row_vec: Vec<&str> = lines[word_i].split(",").collect();
             for lang_id in 1..first_row.len() {
                 match row_vec.get(lang_id) {
-                    Some(val) => { self.words.push(Word::new(word_i as i32, lang_id as i32, val));
-                                    println!("{}", val)
+                    Some(val) => { self.words.push(Word::new(word_i as i32 - 1, lang_id as i32 - 1, val));
+                                    // println!("{}", val)
                                  },
                     None => println!("Hey")
                 }
             }
         }
 
-
+        // Language parsing
         for lang_i in 1..first_row.len() {
-            self.langs.push(Language::new(lang_i as i32, first_row[lang_i]));
+            self.langs.push(Language::new(lang_i as i32 - 1, first_row[lang_i]));
         }
     }
 }
@@ -74,17 +76,21 @@ struct Table {
 fn main() {
     let mut t = Table::new("..", "table", "csv");
     t.parse_langs();
+    // for word in t.words {
+    //     println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)
+    // }
+
+    let mut pl: Vec<Word> = Vec::new();
+
     for word in t.words {
-        println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)
+        if word.lang_id == 1 {
+            pl.push(word)
+        }
     }
 
-
-    // for lang in t.languages {
-    //     println!("Id: {}\nName:{}\nWords:\n", lang.id, lang.name);
-    //     for word in lang.words {
-    //         println!("{} with {}", word.item_id, word.value);
-    //     }
-    // }
+    for p in pl {
+        println!("{}", p.val)
+    }
 
 }
 
