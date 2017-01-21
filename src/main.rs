@@ -5,67 +5,87 @@ use std::io::prelude::*;
 use std::fs;
 
 struct Word {
-    item_id: i32,
-    value: String
+    id: i32,
+    lang_id: i32,
+    val: String
 } impl Word {
-    fn new(item_id: i32, value: String) -> Word {
-        Word { item_id: item_id, value: value }
+    fn new(id: i32, lang_id: i32, val: &str) -> Word {
+        Word { id: id, lang_id: lang_id, val: val.to_string() }
     }
 }
 
 struct Language {
     id: i32,
-    name: String,
-    words: Vec<Word>
+    name: String
 } impl Language {
-    fn new(id: i32, name: String, words: Vec<Word>) -> Language {
-        Language { id: id, name: name, words: words}
+    fn new(id: i32, name: &str) -> Language {
+        Language { id: id, name: name.to_string() }
     }
 }
 
 struct Table {
     file: File,
-    languages: Vec<Language>
+    langs: Vec<Language>,
+    words: Vec<Word>
 } impl Table {
-    fn new(direc: String, name: String, extension: String) -> Table {
-        Table { file: open_file(direc, name, extension), languages: Vec::new() }
+    fn new(direc: &str, name: &str, ext: &str) -> Table {
+        Table {
+            file: open_file(
+                direc.to_string(),
+                name.to_string(),
+                ext.to_string()
+            ),
+            langs: Vec::new(),
+            words: Vec::new()
+        }
     }
 
     fn parse_langs(&mut self) {
         let mut content = read_file(&mut self.file);
         let lines: Vec<&str> = content.split("\n").collect();
 
-        let first_row: Vec<&str> = lines[0].split(",").collect();
-        let mut langs = Vec::new();
+        let first_row: Vec<&str> = lines.first().unwrap().split(",").collect();
 
-        for i in 1..first_row.len() {
-            let mut words_vec: Vec<Word> = Vec::new();
-            for i2 in 1..lines.len() {
-                let current_line_vec: Vec<&str> = lines[i2].split(",").collect();
-                words_vec.push(Word::new(
-                    current_line_vec.first()
-                        .unwrap()
-                        .trim()
-                        .parse()
-                        .unwrap()
-                    , current_line_vec[i].to_string())
-                )
+        // NOTE: Care about performance for parsing words
+        // Old method:
+        // Going through all rows and getting the value at position of current language
+        // New method:
+        // Going through the rows, then languages
+
+        for word_i in 1..lines.len() {
+            let row_vec: Vec<&str> = lines[word_i].split(",").collect();
+            for lang_id in 1..first_row.len() {
+                match row_vec.get(lang_id) {
+                    Some(val) => { self.words.push(Word::new(word_i as i32, lang_id as i32, val));
+                                    println!("{}", val)
+                                 },
+                    None => println!("Hey")
+                }
             }
-            langs.push(Language::new((i as i32) - 1, first_row[i].to_string(), words_vec))
         }
-        self.languages = langs;
+
+
+        for lang_i in 1..first_row.len() {
+            self.langs.push(Language::new(lang_i as i32, first_row[lang_i]));
+        }
     }
 }
 
 fn main() {
-    let mut t = Table::new("..".to_string(), "new".to_string(), "csv".to_string());
+    let mut t = Table::new("..", "table", "csv");
     t.parse_langs();
-    for lang in t.languages {
-        println!("Id: {}\nName:{}\nWords:\n", lang.id, lang.name);
-        for word in lang.words {
-            println!("{} with {}", word.item_id, word.value);
-        }
+    for word in t.words {
+        println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)
     }
+
+
+    // for lang in t.languages {
+    //     println!("Id: {}\nName:{}\nWords:\n", lang.id, lang.name);
+    //     for word in lang.words {
+    //         println!("{} with {}", word.item_id, word.value);
+    //     }
+    // }
+
 }
 
 // =============================================================================
