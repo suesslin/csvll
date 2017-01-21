@@ -13,7 +13,7 @@ struct Table {
 } impl Table {
     fn new(direc: &str, name: &str, ext: &str) -> Table {
         Table {
-            file: file_help::open_file(
+            file: file_help::open(
                 direc.to_string(),
                 name.to_string(),
                 ext.to_string()
@@ -24,7 +24,7 @@ struct Table {
     }
 
     fn parse_langs(&mut self) {
-        let mut content = file_help::read_file(&mut self.file);
+        let mut content = file_help::read(&mut self.file);
         let lines: Vec<&str> = content.split("\n").collect();
 
         let first_row: Vec<&str> = lines.first().unwrap().split(",").collect();
