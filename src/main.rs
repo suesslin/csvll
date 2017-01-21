@@ -1,25 +1,10 @@
 mod file_help;
+mod side_models;
+
+use side_models::Word;
+use side_models::Language;
 
 use std::fs::File;
-
-struct Word {
-    id: i32,
-    lang_id: i32,
-    val: String
-} impl Word {
-    fn new(id: i32, lang_id: i32, val: &str) -> Word {
-        Word { id: id, lang_id: lang_id, val: val.to_string() }
-    }
-}
-
-struct Language {
-    id: i32,
-    name: String
-} impl Language {
-    fn new(id: i32, name: &str) -> Language {
-        Language { id: id, name: name.to_string() }
-    }
-}
 
 struct Table {
     file: File,
@@ -74,20 +59,20 @@ struct Table {
 fn main() {
     let mut t = Table::new("..", "table", "csv");
     t.parse_langs();
-    // for word in t.words {
-    //     println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)
-    // }
-
-    let mut pl: Vec<Word> = Vec::new();
-
     for word in t.words {
-        if word.lang_id == 1 {
-            pl.push(word)
-        }
+        println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)
     }
 
-    for p in pl {
-        println!("{}", p.val)
-    }
+    // let mut pl: Vec<Word> = Vec::new();
+    //
+    // for word in t.words {
+    //     if word.lang_id == 1 {
+    //         pl.push(word)
+    //     }
+    // }
+    //
+    // for p in pl {
+    //     println!("{}", p.val)
+    // }
 
 }
