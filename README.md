@@ -1,5 +1,5 @@
-# language-parser-csv
-A parser for having multiple languages in an app.
+# CSV Language Manager
+Manage multiple languages through CSV tables.
 
 ## Example 
 In this walkthrough, we'll be using **Google Sheets** as a tool. 
