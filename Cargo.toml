@@ -1,6 +1,9 @@
 [package]
 name = "csv_reader"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Lukas Andreas Muller <lamuller@protonmail.com>"]
+description = "Language management through CSV tables"
+license = "MIT"
+repository = "https://github.com/luki/language-parser-csv"
 
 [dependencies]

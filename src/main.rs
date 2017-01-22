@@ -1,17 +1,16 @@
 mod file_help;
 mod side_models;
 
-use side_models::Word;
-use side_models::Language;
+use side_models::{Word, Language};
 
 use std::fs::File;
 
-struct Table {
-    file: File,
-    langs: Vec<Language>,
-    words: Vec<Word>
+pub struct Table {
+    pub file: File,
+    pub langs: Vec<Language>,
+    pub words: Vec<Word>
 } impl Table {
-    fn new(direc: &str, name: &str, ext: &str) -> Table {
+    pub fn new(direc: &str, name: &str, ext: &str) -> Table {
         Table {
             file: file_help::open(
                 direc.to_string(),
@@ -23,7 +22,7 @@ struct Table {
         }
     }
 
-    fn parse_langs(&mut self) {
+    pub fn parse_langs(&mut self) {
         let mut content = file_help::read(&mut self.file);
         let lines: Vec<&str> = content.split("\n").collect();
 
