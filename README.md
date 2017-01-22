@@ -7,16 +7,16 @@ Manage multiple languages through CSV tables.
 
 ## Getting Started
 In this walkthrough, we'll be using **Google Sheets** as a tool.
-###Step 1 - Creating a Table
+### Step 1 - Creating a Table
 <img src="http://luke.guru/2jF1Aqq" width=50%>
 
 As you can see, a table with IDs in the first column, and languages in the first row should be created. This should be
 relatively easy to comprehend.
 
-###Step 2 - Save Table as **.csv**
+### Step 2 - Save Table as **.csv**
 <img src="http://luke.guru/2iQO5XK" width=50%>
 
-###Step 3 - Add **csvlm** as Dependency
+### Step 3 - Add **csvlm** as Dependency
 1. In your *cargo.toml* add
 ```Rust
 [dependencies]
@@ -35,7 +35,7 @@ extern crate csvlm;
 use csvlm::Manager;
 ```
 
-###Step 4 - Create Manager & Parse
+### Step 4 - Create Manager & Parse
 Now we need a manager that parses the information for us
 ```Rust
 // The parameters are directory, filename & extension
@@ -44,4 +44,55 @@ let mut manag = Manager::new("..", "test_table", ".txt");
 
 // Then parse the file assigned
 manag.parse();
+```
+
+### Step 5 - Set Default Language
+```Rust
+// (Code continues from earlier)
+// Set your default language with any available language id
+m.set_def(0);
+// Get language reference & vector of word references as a tuple
+let (lang, word_vec) = m.get_def();
+```
+
+## Models
+### Language
+``` Rust
+id: i32,
+name: String
+
+// Initalizer
+fn new(id: i32, name: &str) -> Language { /* ... */ }
+```
+
+### Word
+``` Rust
+id: i32,
+lang_id: i32,
+val: String
+
+// Initalizer
+fn new(id: i32, lang_id: i32, val: &str) -> Word { /* ... */ }
+```
+
+### Manager
+``` Rust
+file: File,
+langs: Vec<Language>,
+words: Vec<Word>,
+def_lang: i32
+
+// Initalizer
+fn new(direc: &str, name: &str, ext: &str) -> Manager { /* ... */ }
+
+// Further methods
+
+// Parses languages & words into manager model
+fn parse() { /* ... */ }
+
+// Sets default language by language id
+fn set_def(lang_id: i32) { /* ... */ }
+
+// Returns reference to set def. language & vector of references to words of language
+fn get_def() -> (&Language, Vec<&Word>) { /* ... */ }
 ```
