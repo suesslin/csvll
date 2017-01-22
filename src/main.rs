@@ -5,13 +5,13 @@ use side_models::{Word, Language};
 
 use std::fs::File;
 
-pub struct Table {
+pub struct Manager {
     pub file: File,
     pub langs: Vec<Language>,
     pub words: Vec<Word>
-} impl Table {
-    pub fn new(direc: &str, name: &str, ext: &str) -> Table {
-        Table {
+} impl Manager {
+    pub fn new(direc: &str, name: &str, ext: &str) -> Manager {
+        Manager {
             file: file_help::open(
                 direc.to_string(),
                 name.to_string(),
@@ -56,7 +56,7 @@ pub struct Table {
 }
 
 fn main() {
-    let mut t = Table::new("..", "table", "csv");
+    let mut t = Manager::new("..", "table", "csv");
     t.parse_langs();
     for word in t.words {
         println!("at {}: {} (lang: {})", word.id, word.val, word.lang_id)

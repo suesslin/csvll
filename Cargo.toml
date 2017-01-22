@@ -1,5 +1,5 @@
 [package]
-name = "csv_reader"
+name = "csvlm"
 version = "0.1.1"
 authors = ["Lukas Andreas Muller <lamuller@protonmail.com>"]
 description = "Language management through CSV tables"
