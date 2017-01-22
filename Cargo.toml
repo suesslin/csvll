@@ -1,6 +1,6 @@
 [package]
 name = "csvlm"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Lukas Andreas Muller <lamuller@protonmail.com>"]
 description = "Language management through CSV tables"
 license = "MIT"
