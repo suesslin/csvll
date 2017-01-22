@@ -1,5 +1,5 @@
-# CSV Language Manager
-Manage multiple languages through CSV tables.
+# CSV Localization Library
+Localization through CSV tables.
 
 **Links**:
 - [GitHub](https://github.com/paziphik/csvlm)
