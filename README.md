@@ -1,6 +1,10 @@
 # CSV Language Manager
 Manage multiple languages through CSV tables.
 
+**Links**:
+-[GitHub](https://github.com/paziphik/csvlm)
+-[Cargo](https://crates.io/crates/csvlm)
+
 ## Getting Started
 In this walkthrough, we'll be using **Google Sheets** as a tool.
 ###Step 1 - Creating a Table
@@ -17,7 +21,7 @@ relatively easy to comprehend.
 ```Rust
 [dependencies]
 // Assign latest version (Might not be the one saying)
-csvlm = "0.1.2"
+csvlm = "0.1.3"
 ```
 <br>
 2. In the command line run
