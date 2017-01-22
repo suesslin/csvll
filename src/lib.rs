@@ -22,7 +22,7 @@ pub struct Manager {
         }
     }
 
-    pub fn parse_langs(&mut self) {
+    pub fn parse(&mut self) {
         let mut content = file_help::read(&mut self.file);
         let lines: Vec<&str> = content.split("\n").collect();
 
