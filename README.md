@@ -2,8 +2,8 @@
 Localization through CSV tables.
 
 **Links**:
-- [GitHub](https://github.com/paziphik/csvlm)
-- [Cargo](https://crates.io/crates/csvlm)
+- [GitHub](https://github.com/paziphik/csvll)
+- [Cargo](https://crates.io/crates/csvll)
 
 ## Getting Started
 In this walkthrough, we'll be using **Google Sheets** as a tool.
@@ -16,12 +16,12 @@ relatively easy to comprehend.
 ### Step 2 - Save Table as **.csv**
 <img src="http://i1126.photobucket.com/albums/l606/betaluki/Screen%20Shot%202017-01-19%20at%2012.36.52%20PM_zpsamueyz7t.png" width=50%>
 
-### Step 3 - Add **csvlm** as Dependency
+### Step 3 - Add **csvll** as Dependency
 1. In your *cargo.toml* add
 ```Rust
 [dependencies]
 // Assign latest version (Might not be the one saying)
-csvll = "0.1.3"
+csvll = "0.1.5"
 ```
 <br>
 2. In the command line run
@@ -30,9 +30,9 @@ csvll = "0.1.3"
 <br>
 3. In your executable/library of choice add
 ```Rust
-extern crate csvlm;
+extern crate csvll;
 
-use csvlm::Manager;
+use csvll::Manager;
 ```
 
 ### Step 4 - Create Manager & Parse
