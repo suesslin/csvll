@@ -8,20 +8,20 @@ Localization through CSV tables.
 ## Getting Started
 In this walkthrough, we'll be using **Google Sheets** as a tool.
 ### Step 1 - Creating a Table
-<img src="http://luke.guru/2iQO5XK" width=50%>
+<img src="http://i1126.photobucket.com/albums/l606/betaluki/Screen%20Shot%202017-01-19%20at%2012.27.14%20PM_zpsoi0urfcy.png" width=50%>
 
 As you can see, a table with IDs in the first column, and languages in the first row should be created. This should be
 relatively easy to comprehend.
 
 ### Step 2 - Save Table as **.csv**
-<img src="http://luke.guru/2jF1Aqq" width=50%>
+<img src="http://i1126.photobucket.com/albums/l606/betaluki/Screen%20Shot%202017-01-19%20at%2012.36.52%20PM_zpsamueyz7t.png" width=50%>
 
 ### Step 3 - Add **csvlm** as Dependency
 1. In your *cargo.toml* add
 ```Rust
 [dependencies]
 // Assign latest version (Might not be the one saying)
-csvlm = "0.1.3"
+csvll = "0.1.3"
 ```
 <br>
 2. In the command line run

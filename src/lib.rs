@@ -95,6 +95,7 @@ pub struct Manager {
     // Return vector of word references at certain IDs as vec
     pub fn get_words(&self, word_ids: Vec<i32>) -> Vec<&Word> {
         let mut words: Vec<&Word> = Vec::new();
+        // NOTE: forEach possible?
         for id in word_ids {
             words.push(self.get_word(id))
         }

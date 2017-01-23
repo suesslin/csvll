@@ -1,10 +1,10 @@
 [package]
-name = "csvlm"
-version = "0.1.4"
+name = "csvll"
+version = "0.1.5"
 authors = ["Lukas Andreas Muller <lamuller@protonmail.com>"]
-description = "Language management through CSV tables"
+description = "A library for localization through csv-files."
 license = "MIT"
-repository = "https://github.com/luki/language-parser-csv"
+repository = "https://github.com/nebula/csvll"
 readme = "README.md"
 
 [dependencies]
