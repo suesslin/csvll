@@ -95,4 +95,12 @@ fn set_def(lang_id: i32) { /* ... */ }
 
 // Returns reference to set def. language & vector of references to words of language
 fn get_def() -> (&Language, Vec<&Word>) { /* ... */ }
+
+// Returns references to word of current language at index
+fn get_word(word_id: i32) -> &Word { /* ... */ }
+
+// Returns vector of references of words of current language at indicies
+fn get_words(word_ids: Vec<i32>) -> Vec<&Word> { /* ... */ }
+
+
 ```
