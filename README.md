@@ -1,9 +1,6 @@
 # CSV Localization Library
 Localization through CSV tables.
-
-**Links**:
-- [GitHub](https://github.com/paziphik/csvll)
-- [Cargo](https://crates.io/crates/csvll)
+[![Current Version](http://meritbadge.herokuapp.com/csvll)](https://crates.io/crates/csvll)
 
 ## Getting Started
 In this walkthrough, we'll be using **Google Sheets** as a tool.
