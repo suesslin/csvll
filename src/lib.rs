@@ -83,4 +83,12 @@ pub struct Manager {
         }
     }
 
+    // Return word of current def. lang. at index 
+    pub fn get_current_word(&self, word_id: i32) -> &Word {
+        let (lang, words) = self.get_def();
+        match words.get(word_id as usize) {
+            Some(word) => word,
+            None => panic!("Couldn't find word")
+        }
+    }
 }
