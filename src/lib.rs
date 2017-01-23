@@ -83,12 +83,22 @@ pub struct Manager {
         }
     }
 
-    // Return word of current def. lang. at index 
-    pub fn get_current_word(&self, word_id: i32) -> &Word {
+    // Return word reference of current def. lang. at index
+    pub fn get_word(&self, word_id: i32) -> &Word {
         let (lang, words) = self.get_def();
         match words.get(word_id as usize) {
             Some(word) => word,
             None => panic!("Couldn't find word")
         }
     }
+
+    // Return vector of word references at certain IDs as vec
+    pub fn get_words(&self, word_ids: Vec<i32>) -> Vec<&Word> {
+        let mut words: Vec<&Word> = Vec::new();
+        for id in word_ids {
+            words.push(self.get_word(id))
+        }
+        words
+    }
+
 }
