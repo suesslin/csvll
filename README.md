@@ -18,7 +18,7 @@ relatively easy to comprehend.
 ```Rust
 [dependencies]
 // Assign latest version (Might not be the one saying)
-csvll = "0.1.5"
+csvll = "0.1.6"
 ```
 <br>
 2. In the command line run
@@ -94,6 +94,7 @@ fn set_def(lang_id: i32) { /* ... */ }
 fn get_def() -> (&Language, Vec<&Word>) { /* ... */ }
 
 // Returns references to word of current language at index
+// Really works since 0.1.6.
 fn get_word(word_id: i32) -> &Word { /* ... */ }
 
 // Returns vector of references of words of current language at indicies
