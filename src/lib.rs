@@ -3,6 +3,7 @@ mod side_models;
 
 use side_models::{Word, Language};
 use std::fs::File;
+use std::error::Error;
 
 pub struct Manager {
     pub file: File,
@@ -10,12 +11,12 @@ pub struct Manager {
     pub words: Vec<Word>,
     pub def_lang: i32
 } impl Manager {
-    pub fn new(direc: &str, name: &str, ext: &str) -> Manager {
+    pub fn new(direc: &str, name: &str) -> Manager {
         Manager {
             file: file_help::open(
                 direc.to_string(),
                 name.to_string(),
-                ext.to_string()
+                "csv".to_string()
             ),
             langs: Vec::new(),
             words: Vec::new(),
@@ -36,13 +37,17 @@ pub struct Manager {
         // New method:
         // Going through the rows, then languages
 
-        // Word parsing
-        // NOTE: IDs must go -1, because starts counting at 1 (1 should be 0)
-        for word_i in 1..lines.len() {
-            let row_vec: Vec<&str> = lines[word_i].split(",").collect();
+        //Problem with IDs
+        // NOTE: ID for word is current loop position, not actual ID from table
+        for current_row in 1..lines.len() {
+            let row_vec: Vec<&str> = lines[current_row].split(",").collect();
+            let word_index: i32 = match row_vec.first().unwrap().trim().parse() {
+                Ok(i) => i,
+                Err(why) => panic!("Not an index for words in row {}. Error: {}", current_row, why.description())
+            };
             for lang_id in 1..first_row.len() {
                 match row_vec.get(lang_id) {
-                    Some(val) => { self.words.push(Word::new(word_i as i32 - 1, lang_id as i32 - 1, val));
+                    Some(val) => { self.words.push(Word::new(word_index, lang_id as i32 - 1, val));
                                     // println!("{}", val)
                                  },
                     None => println!("Hey")
@@ -85,21 +90,12 @@ pub struct Manager {
 
     // Return word reference of current def. lang. at index
     pub fn get_word(&self, word_id: i32) -> &Word {
-        let (lang, words) = self.get_def();
-        match words.get(word_id as usize) {
-            Some(word) => word,
-            None => panic!("Couldn't find word")
+        for word in &self.words {
+                if word.lang_id == self.def_lang - 1 && word.id == word_id {
+                    return word
+                }
         }
-    }
-
-    // Return vector of word references at certain IDs as vec
-    pub fn get_words(&self, word_ids: Vec<i32>) -> Vec<&Word> {
-        let mut words: Vec<&Word> = Vec::new();
-        // NOTE: forEach possible?
-        for id in word_ids {
-            words.push(self.get_word(id))
-        }
-        words
+        panic!("Couldn't find a word with id {} at set def. lang. {}", word_id, self.def_lang);
     }
 
 }
