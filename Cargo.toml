@@ -1,6 +1,6 @@
 [package]
 name = "csvll"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Lukas Andreas Muller <lamuller@protonmail.com>"]
 description = "A library for localization through csv-files."
 license = "MIT"

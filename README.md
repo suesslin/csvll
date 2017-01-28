@@ -37,7 +37,8 @@ Now we need a manager that parses the information for us
 ```Rust
 // The parameters are directory, filename & extension
 // My file is located outside of the project
-let mut manag = Manager::new("..", "test_table", ".txt");
+// FROM 0.1.6 on: No file extension needed anymore (As it is supposed to be csv)
+let mut manag = Manager::new("..", "test_table");
 
 // Then parse the file assigned
 manag.parse();
