@@ -5,7 +5,7 @@ use side_models::{Word, Language};
 use std::fs::File;
 use std::error::Error;
 
-const FILE_TYPE: &'static str = "csv"
+const FILE_TYPE: &'static str = "csv";
 
 pub struct Manager {
     pub file: File,
