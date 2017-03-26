@@ -1,3 +1,7 @@
+// Copyright 2017 Lukas A. Mueller.  All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
+
 use std::fs::File;
 use std::path::Path;
 use std::error::Error;

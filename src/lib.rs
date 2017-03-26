@@ -1,3 +1,7 @@
+// Copyright 2017 Lukas A. Mueller.  All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
+
 mod file_help;
 mod side_models;
 
