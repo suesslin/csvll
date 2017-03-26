@@ -108,7 +108,7 @@ fn get_words(word_ids: Vec<i32>) -> Vec<&Word> { /* ... */ }
 * [Lukas Mueller](https://github.com/luki) - Inital Work
 
 # Versioning
-[SemVer](http://semver.org/) applies for versioning since 0.1.6. For the versions available, see the [crate](https://crates.io/crates/caesarlib)
+[SemVer](http://semver.org/) applies for versioning since 0.1.6. For the versions available, see the [crate](https://crates.io/crates/csvll).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
