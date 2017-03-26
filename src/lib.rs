@@ -5,6 +5,8 @@ use side_models::{Word, Language};
 use std::fs::File;
 use std::error::Error;
 
+const FILE_TYPE: &'static str = "csv";
+
 pub struct Manager {
     pub file: File,
     pub langs: Vec<Language>,
@@ -16,7 +18,7 @@ pub struct Manager {
             file: file_help::open(
                 direc.to_string(),
                 name.to_string(),
-                "csv".to_string()
+                FILE_TYPE.to_string()
             ),
             langs: Vec::new(),
             words: Vec::new(),
@@ -27,9 +29,9 @@ pub struct Manager {
 
     pub fn parse(&mut self) {
         let mut content = file_help::read(&mut self.file);
-        let lines: Vec<&str> = content.split("\n").collect();
+        let lines= content.lines().collect::<Vec<&str>>();
 
-        let first_row: Vec<&str> = lines.first().unwrap().split(",").collect();
+        let first_row= lines.first().unwrap().split(",").collect::<Vec<&str>>();
 
         // NOTE: Care about performance for parsing words
         // Old method:

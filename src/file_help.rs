@@ -13,15 +13,15 @@ use std::fs;
 // Actually able to create file without using path, just format
 // QUESTION: Any downsides?
 
-pub fn create(direc: String, name: String, extension: String) -> File {
-    match File::create(Path::new(&format!("{}/{}.{}", direc, name, extension))) {
+pub fn create(dir: String, name: String, extension: String) -> File {
+    match File::create(Path::new(&format!("{}/{}.{}", dir, name, extension))) {
         Ok(file) => file,
         Err(why) => panic!("{}", why.description())
     }
 }
 
-pub fn open(direc: String, name: String, extension: String) -> File {
-    match File::open(Path::new(&format!("{}/{}.{}", direc, name, extension))) {
+pub fn open(dir: String, name: String, extension: String) -> File {
+    match File::open(Path::new(&format!("{}/{}.{}", dir, name, extension))) {
         Ok(file) => file,
         Err(why) => panic!("{}", why.description())
     }
@@ -40,6 +40,6 @@ pub fn read(file: &mut File) -> String {
     content
 }
 
-pub fn delete(direc: String, name: String, extension: String) {
-    fs::remove_file(format!("{}/{}.{}", direc, name, extension));
+pub fn delete(dir: String, name: String, extension: String) {
+    fs::remove_file(format!("{}/{}.{}", dir, name, extension));
 }
