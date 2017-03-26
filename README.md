@@ -1,5 +1,5 @@
 # CSV Localization Library
-Localization through CSV tables.
+Localization through CSV tables.<br>
 [![Current Version](http://meritbadge.herokuapp.com/csvll)](https://crates.io/crates/csvll)
 
 ## Getting Started
@@ -15,17 +15,19 @@ relatively easy to comprehend.
 
 ### Step 3 - Add **csvll** as Dependency
 1. In your *cargo.toml* add
+
 ```Rust
 [dependencies]
 // Assign latest version (Might not be the one saying)
 csvll = "0.1.6"
 ```
-<br>
+
 2. In the command line run
-`cargo install`
-<br>
-<br>
-3. In your executable/library of choice add
+```sh
+cargo install
+```
+3. In your executable/library of choice
+
 ```Rust
 extern crate csvll;
 
@@ -100,6 +102,13 @@ fn get_word(word_id: i32) -> &Word { /* ... */ }
 
 // Returns vector of references of words of current language at indicies
 fn get_words(word_ids: Vec<i32>) -> Vec<&Word> { /* ... */ }
-
-
 ```
+
+## Contributors
+* [Lukas Mueller](https://github.com/luki) - Inital Work
+
+# Versioning
+[SemVer](http://semver.org/) applies for versioning since 0.1.6. For the versions available, see the [crate](https://crates.io/crates/caesarlib)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
